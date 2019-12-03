@@ -16,7 +16,7 @@ def newContact():
     lastName = click.prompt('Last name')
     companyName = click.prompt('Company name')
     address = click.prompt('Address')
-    phoneNumber = click.prompt('Phone number')
+    phoneNumber = click.prompt('Phone number (format: (xxx) xxx-xxxx)') #Validity Check Needed
     email = click.prompt('Email address')
 
     click.echo('\n--- New Contact Added Successfully ---')
