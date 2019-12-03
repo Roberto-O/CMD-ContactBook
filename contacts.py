@@ -1,5 +1,6 @@
 # pylint: disable=no-value-for-parameter
 import click
+import client
 
 @click.command()
 def help():
@@ -47,3 +48,4 @@ def updateContact():
     toUpdate = click.prompt('Enter first name of contact')
     click.echo('todo')
     click.echo('Contact updated.')
+
