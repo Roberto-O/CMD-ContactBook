@@ -29,8 +29,12 @@ def showContacts():
 
 @click.command()
 def searchContacts():
-    click.echo('--- Search Contacts ---')
-    click.echo('todo')
+    click.echo('--- Search Contacts - Select Number Option ---')
+    option = click.prompt('1 - Search by last name\n2 - Search by first name\n3 - Search by full name\n4 - Search by company\n5 - Search by address\n6 - Search by phone number\n7 - Return to main menu')
+    if(option == 1):
+        input = click.prompt('Enter Last Name')
+        client.searchByLast(input)
+    
 
 @click.command()
 def removeContact():

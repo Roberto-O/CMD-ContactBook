@@ -1,5 +1,4 @@
 import sqlite3
-from random import random
 
 conn = sqlite3.connect('contacts.db')
 c = conn.cursor()
@@ -16,6 +15,13 @@ def createTable():
                 )"""
     c.execute(createContactTable)
     conn.commit()
+
+def searchByLast(input):
+    search = "SELECT last_name, first_name FROM contacts WHERE last_name LIKE" + input + "%'"
+    c.execute(search)
+    conn.commit()
+
+
 
 
 
