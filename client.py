@@ -1,5 +1,4 @@
 import sqlite3
-from random import random
 
 conn = sqlite3.connect('contacts.db')
 c = conn.cursor()
