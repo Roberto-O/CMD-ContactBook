@@ -19,8 +19,9 @@ def createTable():
 def searchByLast(input):
     search = "SELECT last_name, first_name FROM contacts WHERE last_name LIKE '" + input + "%'"
     c.execute(search)
+    rows = c.fetchall()
+    return rows
     
-
 def searchByFirst(input):
     search = "SELECT last_name, first_name FROM contacts WHERE first_name LIKE '" + input + "%'"
     c.execute(search)
