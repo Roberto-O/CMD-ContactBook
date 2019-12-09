@@ -21,6 +21,11 @@ def searchByLast(input):
     c.execute(search)
     conn.commit()
 
+def searchByFirst(input):
+    search = "SELECT last_name, first_name FROM contacts WHERE first_name LIKE" + input + "%'"
+    c.execute(search)
+    conn.commit()
+
 
 
 
