@@ -41,5 +41,8 @@ def searchByAddr(input):
     c.execute(search)
     conn.commit()
 
-
-
+def createContact(task):
+    sql = ''' INSERT INTO contacts(id, first_name, last_name, company_name, address, email, phone)
+              VALUES(?,?,?,?,?,?,?) '''
+    c.execute(sql, task)
+    conn.commit()
