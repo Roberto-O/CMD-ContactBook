@@ -37,6 +37,10 @@ def searchContacts():
     elif(option == '2'):
         input = click.prompt('Enter First Name')
         client.searchByFirst(input)
+    elif(option == '3'):
+        input_l = click.prompt('Enter Last Name')
+        input_f = click.prompt('Enter First Name')
+        client.searchByFull(input_l, input_f)
     
 
 @click.command()
