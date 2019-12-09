@@ -2,6 +2,8 @@
 import click
 import client
 
+#database = 'contacts.db'
+
 @click.command()
 def help():
     click.clear()
@@ -21,6 +23,9 @@ def newContact():
 
     click.echo('\n--- New Contact Added Successfully ---')
     click.echo(firstName + ' ' + lastName + '\n' + companyName + '\n' + address + '\n' + phoneNumber + '\n' + email)
+
+    task = (1, firstName, lastName, companyName, address, phoneNumber, email)
+    client.createContact(task)
 
 @click.command()
 def showContacts():
@@ -48,4 +53,3 @@ def updateContact():
     toUpdate = click.prompt('Enter first name of contact')
     click.echo('todo')
     click.echo('Contact updated.')
-

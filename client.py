@@ -17,5 +17,8 @@ def createTable():
     c.execute(createContactTable)
     conn.commit()
 
-
-
+def createContact(task):
+    sql = ''' INSERT INTO contacts(id, first_name, last_name, company_name, address, email, phone)
+              VALUES(?,?,?,?,?,?,?) '''
+    c.execute(sql, task)
+    conn.commit()
