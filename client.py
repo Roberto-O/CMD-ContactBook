@@ -18,9 +18,8 @@ def createTable():
 
 def searchByLast(input):
     search = "SELECT last_name, first_name FROM contacts WHERE last_name LIKE '" + input + "%'"
-    print(search)
     c.execute(search)
-    conn.commit()
+    
 
 def searchByFirst(input):
     search = "SELECT last_name, first_name FROM contacts WHERE first_name LIKE '" + input + "%'"
@@ -32,6 +31,15 @@ def searchByFull(input_l, input_f):
     c.execute(search)
     conn.commit()
 
+def searchByCompany(input):
+    search = "SELECT last_name, first_name, company_name FROM contacts WHERE company_name LIKE '" + input + "%'"
+    c.execute(search)
+    conn.commit()
+
+def searchByAddr(input):
+    search = "SELECT last_name, first_name, address FROM contacts WHERE address LIKE '" + input + "%'"
+    c.execute(search)
+    conn.commit()
 
 
 

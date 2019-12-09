@@ -41,6 +41,13 @@ def searchContacts():
         input_l = click.prompt('Enter Last Name')
         input_f = click.prompt('Enter First Name')
         client.searchByFull(input_l, input_f)
+    elif(option == '4'):
+        input = click.prompt('Enter Company Name')
+        client.searchByCompany(input)
+    elif(option == '5'):
+        input = click.prompt('Enter Address')
+        client.searchByAddr(input)
+    
     
 
 @click.command()
