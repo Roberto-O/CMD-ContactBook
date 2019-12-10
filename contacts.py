@@ -2,8 +2,6 @@
 import click
 import client
 
-#database = 'contacts.db'
-
 @click.command()
 def help():
     click.clear()
@@ -24,8 +22,8 @@ def newContact():
     click.echo('\n--- New Contact Added Successfully ---')
     click.echo(firstName + ' ' + lastName + '\n' + companyName + '\n' + address + '\n' + phoneNumber + '\n' + email)
 
-    task = (1, firstName, lastName, companyName, address, phoneNumber, email)
-    client.createContact(task)
+    createTask = (1, firstName, lastName, companyName, address, phoneNumber, email)
+    client.createContact(createTask)
 
 @click.command()
 def showContacts():
@@ -53,22 +51,47 @@ def searchContacts():
         client.searchByCompany(input)
     elif(option == '5'):
         input = click.prompt('Enter Address')
-    
-    
+    elif(option == '6'):
+        input = click.prompt('Enter Phone Number (xxx) xxx-xxxx')
+    elif(option == '7'):
+        help()
+    #Ask after it has found the contact wheter they want to update or delete the contact
+    if click.confirm('Would you like to update this contact?'):
+        updateContact(1) #1 is placeholder
+    if click.confirm('Would you like to delete this contact?'):
+        removeContact(1) #1 is a placeholder
 
-@click.command()
-def removeContact():
-    click.echo('--- Remove Contact ---')
-    toRemoveFN = click.prompt('Enter first name of contact')
-    toRemoveLN = click.prompt("Last name")
-    if click.confirm('Are you sure you want to remove this contact?'):
-        click.echo('Contact removed.')
-    else:
-        click.echo('Contact was not removed.')
+def removeContact(id):
+    removeTask = id
+    client.removeContact(removeTask)
+    click.echo('Contact Removed.')
 
-@click.command()
-def updateContact():
+def updateContact(id):
     click.echo('--- Update Contact ---')
-    toUpdate = click.prompt('Enter first name of contact')
-    click.echo('todo')
+    click.echo('What would you like to update?')
+    option = click.prompt('1 - Last name\n2 - First name\n3 - Company\n4 - Address\n5 - Phone number\n6 - Email\n')
+    if(option == '1'):
+        newLName = click.prompt('Enter New Last Name')
+        updateLNTask = (newLName, id)
+        client.updateLastName(updateLNTask)
+    elif(option == '2'):
+        newFName = click.prompt('Enter New First Name')
+        updateFNTask = (newFName, id)
+        client.updateFirstName(updateFNTask)
+    elif(option == '3'):
+        newCompName = click.prompt('Enter New Company Name')
+        updateCompTask = (newCompName, id)
+        client.updateCompany(updateCompTask)
+    elif(option == '4'):
+        newAddr = click.prompt('Enter New Address')
+        updateAddrTask = (newAddr, id)
+        client.updateAddr(updateAddrTask)
+    elif(option == '5'):
+        newNumber = click.prompt('Enter New Phone Number (xxx) xxx-xxxx ')
+        updateNumTask = (newNumber, id)
+        client.updateNum(updateNumTask)
+    elif(option == '6'):
+        newEmail = click.prompt('Enter New Email')
+        updateEmailTask = (newEmail, id)
+        client.updateEmail(updateEmailTask)
     click.echo('Contact updated.')
