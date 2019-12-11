@@ -12,6 +12,7 @@ def help():
 @click.command()
 def main():
     click.clear()
+    click.echo("Failed search, returning to main menu\n")
     click.echo('Available commands are:')
     click.echo('newContact\nshowContacts\nsearchContacts')
 
@@ -29,13 +30,14 @@ def newContact():
     click.echo('\n--- New Contact Added Successfully ---')
     click.echo(firstName + ' ' + lastName + '\n' + companyName + '\n' + address + '\n' + phoneNumber + '\n' + email)
 
-    createTask = (0, firstName, lastName, companyName, address, email, phoneNumber)
+    createTask = (firstName, lastName, companyName, address, email, phoneNumber)
     client.createContact(createTask)
 
 @click.command()
 def showContacts():
     click.echo('--- All Contacts ---')
-    click.echo('todo')
+    rows = client.showContacts()
+    workWithResults(rows)
 
 @click.command()
 def searchContacts():
@@ -73,8 +75,7 @@ def workWithResults(rows):
     i = 0
     click.echo('\n')
     if(len(rows) == 0):
-        click.echo("Failed search, returning to main menu")
-        help()
+        main()
     if(len(rows) == 1):
         num, *garbage = rows[0]
         singleContactDisplay(num)
