@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name = 'contacts',
-    version = '0.1',
+    version = '1.1',
     description = 'Contact book through the command line',
     author = 'Roberto Olivera, Robert Ranallo, Aaron Tharp',
     py_modules = ['contacts', 'client'],
