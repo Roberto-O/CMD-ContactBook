@@ -21,11 +21,21 @@ def searchByLast(input):
     c.execute(search)
     rows = c.fetchall()
     return rows
-    
-def searchByFirst(input):
-    search = "SELECT last_name, first_name FROM contacts WHERE first_name LIKE '" + input + "%'"
+
+def testSearch():
+    return c.fetchone()
+
+def searchById(input):
+    search = "SELECT * FROM contacts WHERE id = '" + input + "'"
     c.execute(search)
-    conn.commit()
+    row = c.fetchone()
+    return row
+
+def searchByFirst(input): #THIS IS THE CORRECT FORMAT
+    search = "SELECT last_name, first_name, id FROM contacts WHERE first_name LIKE '" + input + "%'"
+    c.execute(search)
+    rows = c.fetchall()
+    return rows
 
 def searchByFull(input_l, input_f):
     search = "SELECT last_name, first_name FROM contacts WHERE CONCAT(first_name, ' ', last_name) LIKE '%" + input_f + " " + input_l + "%'"
