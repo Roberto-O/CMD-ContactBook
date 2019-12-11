@@ -7,7 +7,13 @@ import sqlite3
 def help():
     click.clear()
     click.echo('Available commands are:')
-    click.echo('newContact\nshowContacts\nsearchContacts\nremoveContact\nupdateContact')
+    click.echo('newContact\nshowContacts\nsearchContacts')
+
+@click.command()
+def main():
+    click.clear()
+    click.echo('Available commands are:')
+    click.echo('newContact\nshowContacts\nsearchContacts')
 
 @click.command()
 def newContact():

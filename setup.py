@@ -10,10 +10,9 @@ setup(
     entry_points = '''
         [console_scripts]
             -h             = contacts:help
+            main           = contacts:main
             newContact     = contacts:newContact
             showContacts   = contacts:showContacts
             searchContacts = contacts:searchContacts
-            removeContact  = contacts:removeContact
-            updateContact  = contacts:updateContact
         ''',
 )
