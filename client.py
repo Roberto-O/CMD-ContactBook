@@ -17,7 +17,7 @@ def createTable():
     conn.commit()
 
 def searchByLast(input):
-    search = "SELECT last_name, first_name FROM contacts WHERE last_name LIKE '" + input + "%'"
+    search = "SELECT id, last_name, first_name FROM contacts WHERE last_name LIKE '" + input + "%'"
     c.execute(search)
     rows = c.fetchall()
     return rows
@@ -35,21 +35,28 @@ def searchByFirst(input): #THIS IS THE CORRECT FORMAT
     return rows
 
 def searchByFull(input_l, input_f):
-    search = "SELECT last_name, first_name FROM contacts WHERE CONCAT(first_name, ' ', last_name) LIKE '%" + input_f + " " + input_l + "%'"
+    search = "SELECT id, last_name, first_name FROM contacts WHERE first_name || ' ' || last_name LIKE '%" + input_f + " " + input_l + "%'"
     c.execute(search)
     rows = c.fetchall()
     return rows
-    conn.commit()
 
 def searchByCompany(input):
-    search = "SELECT last_name, first_name, company_name FROM contacts WHERE company_name LIKE '" + input + "%'"
+    search = "SELECT id, last_name, first_name, company_name FROM contacts WHERE company_name LIKE '" + input + "%'"
     c.execute(search)
-    conn.commit()
+    rows = c.fetchall()
+    return rows
+
+def searchByEmail(input):
+    search = "SELECT id, last_name, first_name, company_name FROM contacts WHERE email LIKE '" + input + "%'"
+    c.execute(search)
+    rows = c.fetchall()
+    return rows
 
 def searchByAddr(input):
-    search = "SELECT last_name, first_name, address FROM contacts WHERE address LIKE '" + input + "%'"
+    search = "SELECT id, last_name, first_name, address FROM contacts WHERE address LIKE '" + input + "%'"
     c.execute(search)
-    conn.commit()
+    rows = c.fetchall()
+    return rows
 
 def createContact(task):
     sql = ''' INSERT INTO contacts(id, first_name, last_name, company_name, address, email, phone)

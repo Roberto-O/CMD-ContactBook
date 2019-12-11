@@ -23,7 +23,7 @@ def newContact():
     click.echo('\n--- New Contact Added Successfully ---')
     click.echo(firstName + ' ' + lastName + '\n' + companyName + '\n' + address + '\n' + phoneNumber + '\n' + email)
 
-    createTask = (1, firstName, lastName, companyName, address, phoneNumber, email)
+    createTask = (0, firstName, lastName, companyName, address, email, phoneNumber)
     client.createContact(createTask)
 
 @click.command()
@@ -34,7 +34,7 @@ def showContacts():
 @click.command()
 def searchContacts():
     click.echo('--- Search Contacts - Select Number Option ---')
-    option = click.prompt('1 - Search by last name\n2 - Search by first name\n3 - Search by full name\n4 - Search by company\n5 - Search by address\n6 - Search by phone number\n7 - Return to main menu\nSelect numbered option')
+    option = click.prompt('1 - Search by last name\n2 - Search by first name\n3 - Search by full name\n4 - Search by company\n5 - Search by address\n6 - Search by email\n7 - Return to main menu\nSelect numbered option')
     if(option == '1'):
         input = click.prompt('Enter Last Name')
         rows = client.searchByLast(input)
@@ -47,21 +47,21 @@ def searchContacts():
         input_l = click.prompt('Enter Last Name')
         input_f = click.prompt('Enter First Name')
         rows = client.searchByFull(input_l, input_f)
+        workWithResults(rows)
     elif(option == '4'):
         input = click.prompt('Enter Company Name')
         rows = client.searchByCompany(input)
         workWithResults(rows)
     elif(option == '5'):
         input = click.prompt('Enter Address')
+        rows = client.searchByAddr(input)
+        workWithResults(rows)
     elif(option == '6'):
-        input = click.prompt('Enter Phone Number (xxx) xxx-xxxx')
+        input = click.prompt('Enter Email')
+        rows = client.searchByEmail(input)
+        workWithResults(rows)
     elif(option == '7'):
         help()
-    #Ask after it has found the contact wheter they want to update or delete the contact
-    """if click.confirm('Would you like to update this contact?'):
-        updateContact(1) #1 is placeholder
-    if click.confirm('Would you like to delete this contact?'):
-        removeContact(1) #1 is a placeholder"""
 
 def workWithResults(rows):
     i = 0
@@ -92,6 +92,12 @@ def singleContactDisplay(id):
     click.echo('Phone: ' + str(phone) + '\n')
     click.echo('--- Options ---')
     option = click.prompt('1. Return to main menu\n2. Update contact\n3. Remove contact\nSelect numbered option')
+    if(option == '1'):
+        help()
+    elif(option == '2'):
+        updateContact(num)
+    elif(option == '3'):
+        removeContact(num)
 
 def removeContact(id):
     removeTask = id
